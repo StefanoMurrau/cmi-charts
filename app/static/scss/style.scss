@@ -1,0 +1,437 @@
+@import '../lib/bootstrap-5.2.3/scss/bootstrap' ;
+@import '../lib/bootstrap-5.2.3/scss/variables' ;
+@import '../lib/bootstrap-5.2.3/scss/mixins' ;
+@import '../lib/bootstrap-5.2.3/scss/alert' ;
+
+@font-face{
+    font-family: 'Poppins' ;
+    src: url("../fonts/Poppins/Poppins-Regular.ttf") format('truetype') ;
+}
+
+$font-primary: 'Poppins',Arial, sans-serif ;
+$primary: #0B549E ;
+$secondary: #054484 ;
+
+@import 'login' ;
+@import 'index' ;
+@import 'carousel' ;
+@import 'loader' ;
+
+html{
+	min-height: 100vh ;
+}
+
+body{
+	font-family: $font-primary ;
+	font-size: 14px ;
+	line-height: 1.8 ;
+	font-weight: normal ;
+	background: #fafafa ;
+	color: lighten($black, 50%) ;
+	min-height: inherit ;
+}
+
+#base{
+	min-height: inherit ;
+}
+
+a{
+	text-decoration: none !important ;
+	transition: .3s all ease ;
+	color: $primary ;
+	&:hover, 
+	&:focus{
+		text-decoration: none !important ;
+		outline: none !important ;
+		box-shadow: none ;
+	}
+}
+
+button{
+	transition: .3s all ease ;
+	&:hover, 
+	&:focus{
+		text-decoration: none !important ;
+		outline: none !important ;
+		box-shadow: none !important ;
+	}
+}
+
+h1, h2, h3, h4, h5,
+.h1, .h2, .h3, .h4, .h5{
+	line-height: 1.6 ;
+	font-weight: 600 ;
+	font-family: $font-primary ;
+	color: $primary ;
+}
+
+.ftco-section{
+	padding: 7em 0 ;
+}
+
+.ftco-no-pt{
+	padding-top: 0 ;
+}
+
+.ftco-no-pb{
+	padding-bottom: 0 ;
+}
+
+.heading-section{
+	font-size: 28px ;
+	color: $black ;
+	small{
+		font-size: 18px ;
+	}
+}
+
+.img{
+	background-size: cover ;
+	background-repeat: no-repeat ;
+	background-position: center center ;
+}
+
+
+#sidebar{
+  min-width: 270px ;
+  max-width: 270px ;
+  background: $primary ;
+  color: #fff ;
+  transition: all 0.3s ;
+  position: relative ;
+ 
+	.promoted-input-checkbox{
+		border: 0 ; 
+		clip: rect(0 0 0 0) ; 
+		height: 1px; margin: -1px ; 
+		overflow: hidden ; 
+		padding: 0 ; 
+		position: absolute ; 
+		width: 1px ;
+	}
+  
+	.promoted-checkbox {
+		padding-left: 0 !important ;
+
+		input:checked + label > svg{
+			height: 24px ;
+			animation: draw-checkbox ease-in-out 0.2s forwards ;
+		}
+	
+		label:active::after{
+			background-color: $primary;
+		}
+		
+		label{
+			color: $white ;
+			line-height: 20px ;
+			cursor: pointer ;
+			position: relative ;
+		
+			&:after{
+				content: "" ;
+				height: 20px ;
+				width: 20px ;
+				margin-right: 1rem ;
+				float: left ;
+				border: 2px solid $white ;
+				border-radius: 3px ;
+				transition: 0.15s all ease-out ;      
+			}
+		}
+
+		svg{
+			stroke: $white ;
+			stroke-width: 2px ;
+			height: 0 ; //Firefox fix
+			width: 14px ;
+			position: absolute ;
+			left: 3px ;
+			top: -2px ;
+			stroke-dasharray: 33 ; //Firefox fix
+		}
+	}
+  
+	@keyframes draw-checkbox{
+		0%{
+			stroke-dashoffset: 33 ;
+		}
+		100%{
+			stroke-dashoffset: 0 ;
+		}
+	}
+
+	#search-box{
+		position: relative ;
+
+		i{
+			position: absolute ;
+			top: 13px ;
+			right: 0 ;
+		}
+		
+		input{
+			background-color: transparent ;
+			border-radius: 0 ;
+			border-bottom: 1px solid white ;
+			color: white ;
+			}
+		}
+
+		.h6{
+			color: $white ;
+		}
+
+		&.active{
+			margin-left: -270px ;
+		}
+
+		h1{
+			margin-bottom: 20px ;
+			font-weight: 700 ;
+			font-size: 30px ;
+		
+			.logo{
+				color: $white ;
+			
+				span{
+					font-size: 18px ;
+					font-weight: normal ;
+					color:  $white ;
+					display: block ;
+				}
+			}
+		}
+
+		ul.components{
+			padding: 0 ;
+		}
+
+  		ul{
+			li{
+				font-size: 16px ;
+			
+				>ul{
+					margin-left: 10px ;
+
+				li{
+					font-size: 14px ;
+				}
+			}
+
+			a{
+				padding: 10px 0 ;
+				display: block ;
+				color: rgba(255,255,255,.6) ;
+				border-bottom: 1px solid rgba(255,255,255,.1) ;
+
+				span{
+					color: $secondary ;
+				}
+
+				&:hover{
+					color: $white ;
+				}
+			}
+
+			&.active{
+				> a{
+					background: transparent ;
+					color: $white ;
+				}
+			}
+    	}
+	}	
+
+	@include media-breakpoint-down(md){
+		margin-left: -270px ;
+
+		&.active {
+			margin-left: 0 ;
+		}
+	}
+
+	.custom-menu{
+		display: inline-block ;
+		position: absolute ;
+		top: 100px ;
+		right: 0 ;
+		margin-right: -20px ;
+		z-index: 0 ;
+			
+		@include transition(.3s) ;
+		
+		.btn{
+			width: 60px ;
+			height: 60px ;
+			border-radius: 50% ;
+			position: relative ;
+			z-index: 1 ;
+				
+			i{
+				margin-right: -40px ;
+				font-size: 14px ;
+			}
+
+			&.btn-primary{
+				background: transparent ;
+				border-color: transparent ;
+					
+				&:after{
+					z-index: -1 ;
+					position: absolute ;
+					top: 0 ;
+					left: 0 ;
+					right: 0 ;
+					bottom: 0 ;
+					content: '' ;
+					transform: rotate(45deg) ;
+					background: $primary ;
+					border-radius: 10px ;
+				}
+
+				&:hover, 
+				&:focus{
+					background: transparent !important ;
+					border-color: transparent !important ;
+				}
+			}
+		}
+	}
+}
+
+
+.ui-datepicker{
+	max-width: 100% !important ;
+}
+
+a[data-toggle="collapse"]{
+    position: relative ;
+}
+
+.dropdown-toggle::after{
+	display: block ;
+  	position: absolute ;
+  	top: 50% ;
+  	right: 0 ;
+  	transform: translateY(-50%) ;
+}
+
+#sidebarCollapse{
+	span{
+		@include media-breakpoint-down(md){
+	    	display: none ;
+		}
+	}
+}
+
+#content{
+	padding: 0 ;
+  	transition: all 0.3s ;
+}
+
+.btn{
+	&.btn-primary{
+		background: $primary ;
+		border-color: $primary ;
+
+		&:hover, 
+		&:focus{
+			background: $secondary !important ;
+			border-color: $secondary !important ;
+		}
+	}
+}
+
+.footer{
+	p{
+		color: rgba(255,255,255,.5) ;
+	}
+}
+
+.form-control{
+	height: 40px!important ;
+	background: $white ;
+	color: $black ;
+	font-size: 13px ;
+	border-radius: 4px ;
+	box-shadow: none !important ;
+	border: transparent ;
+	
+	&:focus, 
+	&:active{
+		border-color: $black ;
+	}
+
+	&::-webkit-input-placeholder{ 
+		/* Chrome/Opera/Safari */
+	  	color: rgba(255,255,255,.5) ;
+	}
+
+	&::-moz-placeholder { 
+		/* Firefox 19+ */
+	  	color: rgba(255,255,255,.5) ;
+	}
+
+	&:-ms-input-placeholder{ 
+		/* IE 10+ */
+	  	color: rgba(255,255,255,.5) ;
+	}
+
+	&:-moz-placeholder{ 
+		/* Firefox 18- */
+	  	color: rgba(255,255,255,.5) ;
+	}
+}
+
+.subscribe-form{
+	.form-control{
+		background: lighten($primary,5%) ;
+	}
+}
+
+#archive{
+	.datepicker td,
+	.datepicker th{
+		text-align: center ;
+		padding: 8px 12px ;
+		font-size: 54px ;
+	}
+}
+
+.lg-backdrop{ 
+	background-color: $white !important ;  
+}
+
+.lg-thumb-outer{
+	background-color: $primary !important ;  
+}
+
+.lg-toolbar{
+	background-color: $primary !important ;  
+}
+
+#lg-prev-1,
+#lg-next-1{
+	background-color: $primary ;
+	opacity: 1 ;
+}
+
+#gallery-container a{
+	cursor: pointer ;
+}
+
+.ui-state-default.ui-state-highlight.ui-state-active{
+	background-color: $primary !important ;
+	color: $white !important ;
+}
+
+.ui-state-highlight{
+	background-color: $white !important ;
+	color: $primary !important ;
+	border-color: $primary !important ;
+}
+
+.card-tags a{
+	color: inherit !important ;
+}

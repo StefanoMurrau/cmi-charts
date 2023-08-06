@@ -1,0 +1,309 @@
+<!-- START CREATE HEAD //-->   
+{% macro create_head(display_name, titl, base_href) %}
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no" />
+	<meta name="author" content="Murrau Stefano" />
+	<meta name="description" content="Visualizzatore modelli del Centro Meteo Idrologico di ARPAL" />
+
+	<title>{{display_name | title}} - {{ title }}</title>
+
+	<base href="{{ base_href }}" >
+
+	<!-- Favicon //-->
+	<link rel="apple-touch-icon" sizes="57x57" href="{{ url_for('static', filename='favicon/apple-icon-57x57.png') }}" />
+	<link rel="apple-touch-icon" sizes="60x60" href="{{ url_for('static', filename='favicon/apple-icon-60x60.png') }}" />
+	<link rel="apple-touch-icon" sizes="72x72" href="{{ url_for('static', filename='favicon/apple-icon-72x72.png') }}" />
+	<link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='favicon/apple-icon-76x76.png') }}" />
+	<link rel="apple-touch-icon" sizes="114x114" href="{{ url_for('static', filename='favicon/apple-icon-114x114.png') }}" />
+	<link rel="apple-touch-icon" sizes="120x120" href="{{ url_for('static', filename='favicon/apple-icon-120x120.png') }}" />
+	<link rel="apple-touch-icon" sizes="144x144" href="{{ url_for('static', filename='favicon/apple-icon-144x144.png') }}" />
+	<link rel="apple-touch-icon" sizes="152x152" href="{{ url_for('static', filename='favicon/apple-icon-152x152.png') }}" />
+	<link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon/apple-icon-180x180.png') }}" />
+	<link rel="icon" type="image/png" sizes="192x192"  href="{{ url_for('static', filename='favicon/android-icon-192x192.png') }}" />
+	<link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon/favicon-32x32.png') }}" />
+	<link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='favicon/favicon-96x96.png') }}" />
+	<link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon/favicon-16x16.png') }}" />
+	<link rel="manifest" href="{{ url_for('static', filename='favicon/manifest.json') }}" />
+	<meta name="msapplication-TileColor" content="#ffffff" />
+	<meta name="msapplication-TileImage" content="{{ url_for('static', filename='favicon/ms-icon-144x144.png') }}" />
+	<meta name="theme-color" content="#ffffff" />
+
+	<!-- Theme core Css //-->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.min.css') }}" />
+
+
+	<!-- JQuery UI Css //-->
+	<link rel="stylesheet" href="{{ url_for('static', filename='lib/jquery-ui-1.13.2.custom/jquery-ui.min.css') }}" />
+
+	<!-- Fontawesome core Css //-->
+	<link rel="stylesheet" href="{{ url_for('static', filename='lib/fontawesome-free-6.4.0-web/css/all.min.css') }}" />
+
+	<!-- Lightgallery core Css //-->
+	<link rel="stylesheet" href="{{ url_for('static', filename='lib/lightGallery/dist/css/lightgallery-bundle.min.css') }}"/>
+
+	<svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+		<symbol id="checkmark" viewBox="0 0 24 24">
+		  <path stroke-linecap="round" stroke-miterlimit="10" fill="none"  d="M22.9 3.7l-15.2 16.6-6.6-7.1">
+		  </path>
+		</symbol>
+	</svg>
+</head>
+{% endmacro %}
+<!-- END CREATE HEAD //-->
+
+
+<!-- START CREATE LOGIN MODAL //-->   
+{% macro create_login_modal(form) %}
+<!-- Login Modal -->
+<div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="login-modal-label" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="login-modal-label">Autenticazione</h5>
+				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form id="login-form" method="POST" action="{{ url_for('auth.login_post') }}">
+					<div class="form-group mb-4">
+						<div class="form-label-group">
+							{{ form.mail() }}
+							{{ form.mail.label }} 
+						</div>
+					</div>
+					<div class="form-group mb-4">
+						<div class="form-label-group">
+							{{ form.password() }}
+							{{ form.password.label }} 
+						</div>
+					</div>
+					{{ form.csrf_token }}
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+						{{ form.submit() }}
+					</div>
+				</form>
+			</div>                           
+		</div>
+	</div>
+</div>
+{% endmacro %}
+<!-- END CREATE LOGIN MODAL //-->
+
+
+<!-- START IMPORT JS //-->   
+{% macro import_js() %}
+<!-- JQuery JavaScript //-->
+<script src="{{ url_for('static', filename='lib/jquery-3.6.0.min.js') }}"></script>
+
+<!-- JQuery UI JavaScript //-->
+<script src="{{ url_for('static', filename='lib/jquery-ui-1.13.2.custom/jquery-ui.min.js') }}"></script>
+
+<!-- JQuery DataPicker language JavaScript //-->
+<script src="{{ url_for('static', filename='lib/datepicker-it.js') }}"></script>
+
+<!-- Bootstrap core JavaScript //-->
+<script src="{{ url_for('static', filename='lib/bootstrap-5.2.3/dist/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Lightgallery core Js //-->
+<script src="{{ url_for('static', filename='lib/lightGallery/dist/lightgallery.umd.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/lightGallery/dist/plugins/zoom/lg-zoom.umd.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/lightGallery/dist/plugins/thumbnail/lg-thumbnail.umd.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/lightGallery/dist/plugins/fullscreen/lg-fullscreen.umd.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/lightGallery/dist/plugins/autoplay/lg-autoplay.umd.js') }}"></script>
+
+<!-- Custom scripts for all pages //-->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endmacro %}
+<!-- END IMPORT JS //-->  
+
+
+{% macro create_sidebar(sidebar) %}
+<nav id="sidebar">
+	<div class="p-4">
+		<a href="{{ url_for('main.index') }}">
+			<img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo ARPAL" />
+		</a>
+		{% if current_user.is_authenticated %}
+		<div id="login-icon" data-toggle="popover" title="Disconnettimi">
+			<a href="{{ url_for('auth.logout') }}" >
+				<i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+			</a>
+		</div>
+		{% else %}	
+		<div id="login-icon" data-bs-toggle="modal" data-bs-target="#login-modal" data-toggle="popover" title="Connettimi">
+			<i class="fa fa-user-circle" aria-hidden="true"></i>
+		</div>				
+		{% endif %}
+
+		{% if sidebar == "dashboard" or sidebar == "variables_overview" or sidebar == "variable_images" %}
+		<h1 class="mt-3">
+			<div class="logo">
+				<span>{{display_name | title}}</span>
+				{% if data %}
+					{% for d in data[0] %}
+						<span>{{d}}</span>
+					{% endfor %}			
+				{% endif %}
+			</div>
+		</h1>
+		{% endif %}
+
+		<div id="search-box" class="my-5">
+			<i class="fa fa-search"></i>
+			<input type="text" class="form-control " placeholder="Cerca..." disabled>  
+		</div>
+
+		<ul class="list-unstyled components mb-5">
+			{% if sidebar == "dashboard" %}
+				{% if data %}
+					{% if data[1] %}
+						<li class="my-5">
+							<h6>Corse</h6>
+							<hr class="mt-1" />
+							<div class="form-check promoted-checkbox">
+								{% for d in data[1] %}
+									<input class="form-check-input promoted-input-checkbox" type="checkbox" id="{{d[0]['percorso']}}" checked>
+									<label class="form-check-label run" for="{{d[0]['percorso']}}">
+										<svg><use xlink:href="#checkmark" /></svg>
+										Corsa delle {{ d[0]['percorso'][8:] }} UTC
+									</label>
+								{% endfor %}						
+							</div>
+						</li>
+					{% endif %}
+				{% endif %}
+			{% endif %}
+		</ul>
+
+		<h6>Archivio</h6>
+		<hr class="mt-1" />
+		<div id="datepicker"></div>
+		<div class="footer position-absolute bottom-0">
+			<p>&copy; ARPAL - CFMI-PC <script>document.write(new Date().getFullYear());</script><br/>Tutti i diritti riservati</p>	
+		</div>
+	  </div>
+	<div class="custom-menu">
+		<button type="button" id="sidebarCollapse" class="btn btn-primary">
+			  <i class="fa fa-bars"></i>
+			  <span class="sr-only">Attiva Menu</span>
+		</button>
+	</div>
+</nav>
+{% endmacro %}
+
+<!-- START CREATE LOADER //-->   
+{% macro create_loader() %}
+<!-- Loader -->
+<div id="loader-container">
+    <div id="loader" class="d-flex align-items-center justify-content-center js-fullheight">
+    	<div class="loader-animation">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<h5 class="loader-txt">In caricamento...</h5>
+    </div> 
+</div>
+{% endmacro %}
+<!-- END CREATE LOADER //-->  
+
+<!-- START CREATE ALERT MESSAGE //-->   
+{% macro create_alert_msg() %}
+{%- with messages = get_flashed_messages(with_categories=true) -%}
+	{% if messages %}
+		{% for category, message in messages %}
+			<div class="alert alert-{{category}} alert-dismissible show fade in" role="alert">
+				{{message}}
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		{% endfor %}
+	{% endif %}
+{% endwith %}	
+{% endmacro %}
+<!-- END CREATE ALERT MESSAGE //-->  
+
+<!-- START CREATE VARIABLES CARDS //-->   
+{%- macro create_variables_cards(data, url) %}
+<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+{% if data[1]|length > 0 %}
+	{%- for d in data[1] %}
+	<div class="col">
+		<div class="card h-100">
+			<a href="{{ url_for(url, run=d['percorso'], name=d['etichetta'], variable=d['variable']) }}" class="card-img-top" alt="{{d['etichetta']}}">
+				<img src="{{ url_for('static', filename='data/models/' + d['percorso'] + '/webp/thumbs/' + d['thumbs']) }}" class="card-img-top" alt="{{d['thumbs']}}">
+			</a>    
+			<div class="card-body">
+				<h5 class="card-title">{{d['title']}}</h5>
+				<div class="card-tags">
+					{% for tag in d['tags'] %}
+					<span>{{tag}}</span>
+					{% endfor %} 
+				</div>
+			</div>
+			<div class="card-footer">
+				<small class="text-muted">Corsa del {{d['percorso'][0:4]}}-{{d['percorso'][4:6]}}-{{d['percorso'][6:8]}} alle {{d['percorso'][8:10]}} UTC</small><br/>
+				<small class="text-muted">Ultimo aggiornamento {{d['dataEmissione']}}</small>                                   
+			</div>
+		</div>                
+	</div>
+	{% endfor -%} 
+{% else %}
+	<p class="w-100 mx-auto text-center lead">Nessun modello trovato per la data {{data[0][0]}}<br/>{{data[0][1]}}</p>
+{% endif %}
+</div>   
+{%- endmacro -%}
+<!-- END CREATE CARDS //-->   
+
+<!-- START CREATE MODELS CARDS //-->   
+{% macro create_models_cards(data, url) %}
+<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+	{% if data[1]|length > 0 %}
+		{% for d in data[1] %}
+			<div data-id="{{d[0]['percorso']}}" class="w-100 {% if loop.index != 1 %} models-cards-box-spacer {% endif %}">
+				<h6>Modelli del {{data[0][0]}} corsa delle {{d[0]["percorso"][8:10]}} UTC</h6>
+				<hr/>
+			</div>
+			{% for e in d %}
+				<div data-id="{{e['percorso']}}" class="col">
+					<div class="card h-100">
+						<a href="{{ url_for(url, run=e['percorso'], name=e['etichetta']) }}" class="card-img-top" alt="{{e['etichetta']}}">
+							<img src="{{ url_for('static', filename='data/models/' + e['percorso'] + '/webp/thumbs/' + e['thumbs']) }}"onError="this.onerror=null ; this.src='/static/img/image-not-found.png' ;" class="card-img-top" alt="{{e['thumbs']}}">
+						</a>    
+						<div class="card-body">
+							<h5 class="card-title">{{e['title']}}</h5>
+							<div class="card-tags">
+								{% for tag in e['tags'] %}
+									<span>{{tag}}</span>
+								{% endfor %} 
+							</div>
+						</div>
+						<div class="card-footer">
+							<small class="text-muted">Corsa del {{e['percorso'][0:4]}}-{{e['percorso'][4:6]}}-{{e['percorso'][6:8]}} alle {{e['percorso'][8:10]}} UTC</small><br/>
+							<small class="text-muted">Ultimo aggiornamento {{e['dataEmissione']}}</small>                                   
+						</div>
+					</div>
+				</div>                
+			{% endfor -%}
+		{% endfor -%}
+	{% else %}
+		<p class="w-100 mx-auto text-center lead">Nessun modello trovato per la data {{data[0][0]}}</p>
+	{% endif %}
+</div>   
+{% endmacro %}
+<!-- END CREATE MODELS CARDS //-->   
+
+<!-- START CREATE VARIABLE IMAGES CARDS //-->   
+{% macro create_variable_images_cards(data, run) %}
+<div id="carousel" class="h-100">
+    <div class="row gallery-container row-cols-1 row-cols-md-2 row-cols-xl-3 g-4" id="gallery-container">
+    {% for d in data[1] %}
+        <a data-src="{{ url_for('static', filename='data/models/' + run + '/webp/' + d) }}">
+            <img class="img-fluid" src="{{ url_for('static', filename='data/models/' + run + '/webp/thumbs/thumb_' + d) }}" alt="thumb_{{d}}" />
+        </a>
+    {% endfor -%} 
+    </div>
+</div>
+{% endmacro %}
+<!-- END CREATE VARIABLE IMAGES CARDS //-->   

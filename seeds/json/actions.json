@@ -1,0 +1,12 @@
+[
+    {
+        "id":1,
+        "name":"login", 
+        "description":"The user has logged in"
+    },
+    {
+        "id":2,
+        "name":"logout", 
+        "description":"The user has logged out"
+    }
+]

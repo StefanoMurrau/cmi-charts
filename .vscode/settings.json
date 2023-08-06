@@ -1,0 +1,19 @@
+{
+    "python.defaultInterpreterPath": "venv\\Scripts\\python.exe",
+    "liveSassCompile.settings.formats":[
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "/app/static/css"
+        },
+        {
+            "format": "compressed",
+            "extensionName": ".min.css",
+            "savePath": "/app/static/css"
+        }
+    ],
+    "liveSassCompile.settings.excludeList": [
+        "/app/static/lib/**/*"
+    ],
+    "docwriter.style": "Javadoc",
+}

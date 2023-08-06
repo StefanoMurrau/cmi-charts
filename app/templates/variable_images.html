@@ -1,0 +1,7 @@
+{% extends 'base.html' %}  
+{% from "macros.html" import create_variable_images_cards with context %}
+
+
+{%- block content -%}
+{{ create_variable_images_cards(data, run) }}
+{%- endblock -%}

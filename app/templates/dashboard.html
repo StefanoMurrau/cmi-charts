@@ -1,0 +1,7 @@
+{% extends 'base.html' %}  
+{% from "macros.html" import create_models_cards with context %}
+
+
+{%- block content -%}
+{{ create_models_cards(data, url) }}
+{%- endblock -%}

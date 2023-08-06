@@ -1,0 +1,28 @@
+{% from "macros.html" import create_head with context %}
+{% from "macros.html" import create_sidebar with context %}
+{% from "macros.html" import create_alert_msg with context %}
+{% from "macros.html" import create_loader with context %}
+{% from "macros.html" import create_login_modal with context %}
+{% from "macros.html" import import_js with context %}
+
+
+<!DOCTYPE html>
+
+<html lang="it">
+	{{ create_head(display_name, title, base_href) }}	
+    <body>
+		<div id="base" class="wrapper d-flex align-items-stretch">
+			{{ create_sidebar(sidebar) }}			
+        	<!-- Page Content Start//-->
+      		<div id="content" class="p-5 p-md-5 w-100"">
+				{{ create_alert_msg() }}	
+				{% block content %}{% endblock %}
+			</div>
+			<!-- Page Content End//-->
+			<input type="hidden" value="{{ base_href }}" name="base_href" id="base_href" />
+		</div>
+		{{ create_loader() }}
+		{{ create_login_modal(form) }}
+		{{ import_js() }}
+	</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}    
+
+{% block content -%}
+            <!-- Page Content -->
+			<h1 class="display-1">403</h1>
+			<p class="lead">Non hai il permesso di accedere a questa risorsa. Puoi <a href="javascript:history.back()">tornare indietro </a>alla pagina precedente, oppure <a href="{{ url_for('main.index') }}">ritornare al Cruscotto</a>.</p>
+{%- endblock %}
+
+{% block js -%}
+    </body>
+
+</html>
+{%- endblock %}  			
